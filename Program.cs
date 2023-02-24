@@ -10,9 +10,21 @@
             public double meltingpoint, boilingpoint;
 
             //D15 - 3. Create a public method Print within ChemElement
-            public void Print() {
-                Console.WriteLine($"Grundämne: {name}\n  typ: {type}\n  smältpunkt: {meltingpoint}\n  kokpunkt: {boilingpoint}"); }
-            
+            public void Print()
+            {
+                Console.WriteLine($"Grundämne: {name}\n  typ: {type}\n  smältpunkt: {meltingpoint}\n  kokpunkt: {boilingpoint}");
+            }
+
+            //Constructors:
+            public ChemElement(string n, string t, int iZ, double m, double b)
+            {
+                name = n;
+                type = t;
+                z = iZ;
+                meltingpoint = m;
+                boilingpoint = b;
+            }
+            public ChemElement() { }
         }
         //D15 - 3. ...
         public static void Print(ChemElement element)
@@ -31,6 +43,16 @@
             järn.Print();
             Print(guld);
 
+            //D15 - 4. Make an array of 6 elements.
+            ChemElement[] grundämnen = new ChemElement[6]
+            {
+                syre,
+                järn,
+                guld,
+                new ChemElement() { name = "väte", type = "ickemetall", z = 1, meltingpoint = 13.99, boilingpoint = 20.271 },
+                new ChemElement("brom", "ickemetall", 35, 265.8, 332.0),
+                new ChemElement("kvicksilver", "metall", 80, 234.3210, 629.88)
+            };
 
         }
     }
