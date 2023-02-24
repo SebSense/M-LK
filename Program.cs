@@ -67,6 +67,13 @@
             }
             Console.WriteLine("");
 
+            //D15 - 7. Make a foreach-loop to list all elements with:  melting point < 273.16 K < boilingpoint.
+            foreach(ChemElement element in grundämnen)
+            {
+                if (element == grundämnen[0]) Console.WriteLine("Ämnen som uppfyller: smältpunkt < 273.16 °K < kokpunkt:");
+                if (element.meltingpoint < 273.16 && 273.16 < element.boilingpoint) Console.WriteLine("  " + element.name);
+            }
+ 
         }
     }
 }
