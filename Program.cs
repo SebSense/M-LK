@@ -12,7 +12,7 @@
             //D15 - 3. Create a public method Print within ChemElement
             public void Print()
             {
-                Console.WriteLine($"Grundämne: {name}\n  typ: {type}\n  smältpunkt: {meltingpoint}\n  kokpunkt: {boilingpoint}");
+                Console.WriteLine($"Grundämne: {name}\n  typ: {type}\n  smältpunkt: {meltingpoint} \u00b0K\n  kokpunkt: {boilingpoint} \u00b0K");
             }
 
             //Constructors:
@@ -29,7 +29,7 @@
         //D15 - 3. ...
         public static void Print(ChemElement element)
         {
-            Console.WriteLine($"Grundämne: {element.name}\n  typ: {element.type}\n  smältpunkt: {element.meltingpoint}\n  kokpunkt: {element.boilingpoint}");
+            Console.WriteLine($"Grundämne: {element.name}\n  typ: {element.type}\n  smältpunkt: {element.meltingpoint} \u00b0K\n  kokpunkt: {element.boilingpoint} \u00b0K");
         }
         static void Main(string[] args)
         {
@@ -53,6 +53,11 @@
                 new ChemElement("brom", "ickemetall", 35, 265.8, 332.0),
                 new ChemElement("kvicksilver", "metall", 80, 234.3210, 629.88)
             };
+
+            //D15 - 5. Make a foreach-loop to print all elements in the array.
+            Array.ForEach(grundämnen, e => e.Print());
+
+
 
         }
     }
