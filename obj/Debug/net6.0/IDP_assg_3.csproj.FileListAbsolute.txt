@@ -1,0 +1,15 @@
+D:\dev\moelk\repos\IDP_assg_3\bin\Debug\net6.0\IDP_assg_3.exe
+D:\dev\moelk\repos\IDP_assg_3\bin\Debug\net6.0\IDP_assg_3.deps.json
+D:\dev\moelk\repos\IDP_assg_3\bin\Debug\net6.0\IDP_assg_3.runtimeconfig.json
+D:\dev\moelk\repos\IDP_assg_3\bin\Debug\net6.0\IDP_assg_3.dll
+D:\dev\moelk\repos\IDP_assg_3\bin\Debug\net6.0\IDP_assg_3.pdb
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.csproj.AssemblyReference.cache
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.AssemblyInfoInputs.cache
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.AssemblyInfo.cs
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.csproj.CoreCompileInputs.cache
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.dll
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\refint\IDP_assg_3.dll
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.pdb
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\IDP_assg_3.genruntimeconfig.cache
+D:\dev\moelk\repos\IDP_assg_3\obj\Debug\net6.0\ref\IDP_assg_3.dll
