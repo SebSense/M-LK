@@ -42,6 +42,7 @@
             syre.Print();
             järn.Print();
             Print(guld);
+            Console.WriteLine("");
 
             //D15 - 4. Make an array of 6 elements.
             ChemElement[] grundämnen = new ChemElement[6]
@@ -56,8 +57,15 @@
 
             //D15 - 5. Make a foreach-loop to print all elements in the array.
             Array.ForEach(grundämnen, e => e.Print());
+            Console.WriteLine("");
 
-
+            //D15 - 6. Make a foreach-loop to list all metals:
+            foreach(ChemElement element in grundämnen)
+            {
+                if (element == grundämnen[0]) Console.WriteLine("Metaller:");
+                if (element.type == "metall") Console.WriteLine("  " + element.name);
+            }
+            Console.WriteLine("");
 
         }
     }
