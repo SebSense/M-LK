@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
 namespace D22_ovn_1
@@ -173,6 +175,37 @@ namespace D22_ovn_1
                 Console.WriteLine("Elinformation för {0}:\n uttagstyp: {1}\n husvolttal = {2} V\n frekvens = {3} Hz\n", input, uttagstyp, husvolttal, frekvens);
             }
 
+            //D22-ovn-1.3 - static-metoder (funktioner)
+            //12-15:
+            Console.WriteLine("Tria(1) = {0} Tria(2) = {1} Tria(3) = {2} Tria(4) = {3}", Tria(1), Tria(2), Tria(3), Tria(4));
+            Console.WriteLine("Unitcirle för: 1 = {0}   2 = {1}   0 = {2}   0.5 = {3}   -2 = {4}", UnitCirle(1), UnitCirle(2), UnitCirle(0), UnitCirle(0.5), UnitCirle(-2));
+            Console.WriteLine("Inverse(1.5) = {0} Inverse(0.75) = {1} Inverse(-2) = {2} Inverse(0) = {3}", Inverse(1.5), Inverse(0.75), Inverse(-2), Inverse(0));
+            Console.WriteLine($"Max2(12, 10) = {Max2(12, 10)} Max2(3,-2) = {Max2(3, -2)} IsEven(9) = {IsEven(9)} IsEven(-8) = {IsEven(-8)}\nIsDivisible(56,8) = {IsDivisible(56, 8)} IsDivisible(91,9) = {IsDivisible(91, 9)}\n");
+
+        }
+        static int Tria(int x) // 12. Tria.
+        {
+            return (x * x + x) / 2;
+        }
+        static double UnitCirle(double x) //13.
+        {
+            return Math.Sqrt(1 - x * x);
+        }
+        static double Inverse(double x) //14
+        {
+            return 1 / x;
+        }
+        static int Max2(int x, int y) //15
+        {
+            return x > y ? x : y;
+        }
+        static bool IsEven (int n) //16
+        {
+            return n % 2 == 0 ? true : false;
+        }
+        static bool IsDivisible (int m, int n) //17
+        {
+            return m % n == 0 ? true : false;
         }
     }
 }
