@@ -177,11 +177,10 @@ namespace D22_ovn_1
 
             //D22-ovn-1.3 - static-metoder (funktioner)
             //12-17:
-            Console.WriteLine("Tria(1) = {0} Tria(2) = {1} Tria(3) = {2} Tria(4) = {3}", Tria(1), Tria(2), Tria(3), Tria(4));
-            Console.WriteLine("Unitcirle för: 1 = {0}   2 = {1}   0 = {2}   0.5 = {3}   -2 = {4}", UnitCirle(1), UnitCirle(2), UnitCirle(0), UnitCirle(0.5), UnitCirle(-2));
-            Console.WriteLine("Inverse(1.5) = {0} Inverse(0.75) = {1} Inverse(-2) = {2} Inverse(0) = {3}", Inverse(1.5), Inverse(0.75), Inverse(-2), Inverse(0));
-            Console.WriteLine($"Max2(12, 10) = {Max2(12, 10)} Max2(3,-2) = {Max2(3, -2)} IsEven(9) = {IsEven(9)} IsEven(-8) = {IsEven(-8)}\nIsDivisible(56,8) = {IsDivisible(56, 8)} IsDivisible(91,9) = {IsDivisible(91, 9)}\n");
-
+            Console.WriteLine("12. Tria(1) = {0} Tria(2) = {1} Tria(3) = {2} Tria(4) = {3}", Tria(1), Tria(2), Tria(3), Tria(4));
+            Console.WriteLine("13. Unitcirle för: 1 = {0}   2 = {1}   0 = {2}   0.5 = {3}   -2 = {4}", UnitCirle(1), UnitCirle(2), UnitCirle(0), UnitCirle(0.5), UnitCirle(-2));
+            Console.WriteLine("14. Inverse(1.5) = {0} Inverse(0.75) = {1} Inverse(-2) = {2} Inverse(0) = {3}", Inverse(1.5), Inverse(0.75), Inverse(-2), Inverse(0));
+            Console.WriteLine($"15. Max2(12, 10) = {Max2(12, 10)} Max2(3,-2) = {Max2(3, -2)} \n16. IsEven(9) = {IsEven(9)} IsEven(-8) = {IsEven(-8)}\n17. IsDivisible(56,8) = {IsDivisible(56, 8)} IsDivisible(91,9) = {IsDivisible(91, 9)}\n");
             //D22-ovn-1.4 - loopar
             //18. Räkna ut summan av alla tal mellan 7 och -5
             int sum = 0;
@@ -189,35 +188,53 @@ namespace D22_ovn_1
             {
                 sum += i;
             }
-            Console.WriteLine("summan av alla tal mellan 7 och -5 = " + sum);
+            Console.WriteLine("18. Summan av alla tal mellan 7 och -5 = " + sum);
             //19:
             ulong product = 1;
             for (int i = 33; i < 45; i++)
             {
                 product *= (ulong)i;
             }
-            int test = 0;
-            Console.WriteLine("Produkten av alla tal mellan 33 och 44 (inklusivt) är " + product);
+            Console.WriteLine("19. Produkten av alla tal mellan 33 och 44 (inklusivt) är " + product);
             //20.
-            Console.WriteLine("\nProdukten av alla tal mellan två heltal");
+            Console.WriteLine("\n20. Produkten av alla tal mellan två heltal");
             Console.WriteLine(FactorialTwo(GetInt("Tal 1: "), GetInt("Tal 2: ")));
             //21.
-            Console.WriteLine("\nProdukten av alla tal mellan två positiva heltal");
+            Console.WriteLine("\n21. Produkten av alla tal mellan två positiva heltal");
             Console.WriteLine(FactorialPos(GetInt("Tal 1: "), GetInt("Tal 2: ")));
             //22.
-            Console.WriteLine("\nProdukten av alla udda tal mellan två heltal:");
+            Console.WriteLine("\n22. Produkten av alla udda tal mellan två heltal:");
             Console.WriteLine(FactorialOdd(GetInt("Tal 1: "), GetInt("Tal 2: ")));
             //23.
-            Console.WriteLine("\nSumman av X + (X+1)...+Z där beräkningen avbryts när summan > 100.");
+            Console.WriteLine("\n23. Summan av X + (X+1)...+Z där beräkningen avbryts när summan > 100.");
             int[] sum100s = Sum100(GetInt("Ange tal: "));
             Console.WriteLine($"Z = {sum100s[0]} Summa = {sum100s[1]}");
             //24.
-            Console.WriteLine("\nSumman av X + (X+1)...+Z där beräkningen avbryts en iteration innan summan > 100.");
+            Console.WriteLine("\n24. Summan av X + (X+1)...+Z där beräkningen avbryts en iteration innan summan > 100.");
             int[] sumBefore100s = SumBefore100(GetInt("Ange tal: "));
             Console.WriteLine($"Z = {sumBefore100s[0]} Summa = {sumBefore100s[1]}");
             //25.
-            Console.WriteLine("\nSumman av 1/m + 1/(m+1) .... + 1/(n-1) + 1/n ");
+            Console.WriteLine("\n25. Summan av 1/m + 1/(m+1) .... + 1/(n-1) + 1/n ");
             Console.WriteLine(SumOfInverse(GetInt("Ange m: "), GetInt("Ange n: ")));
+            //26
+            Console.WriteLine("\n26. Inverser av alla heltal 1, 2... n.");
+            Console.WriteLine(SumOfInversesUpTo(GetInt("Ange n :")));
+            //27.
+            Console.WriteLine("\n27. Sign(-23) = {0} | Sign(0) = {1} | Sign(2) = {2}", Sign(-23), Sign(0), Sign(2));
+            //28.
+            Console.WriteLine("\n28. Abs(-32.2) = " + Abs(-32.2) + " Abs(0) = " + Abs(0) + " Abs(3.2) = " + Abs(3.2));
+            //29
+            Console.WriteLine("\n29. IsPrime(58) = " + IsPrime(58) + " IsPrime(59) = " + IsPrime(59));
+            //30
+            Console.WriteLine("\n30. Factorial. 1*2*3....*n = ?2");
+            Console.WriteLine(Factorial(GetInt("Ange n: ")));
+            //31
+            string runZodiac;
+            do
+            {
+                runZodiac = GetString("Run Zodiac() method? (y/n) :");
+                if (runZodiac == "y") Console.WriteLine("Ditt sjärntäcken är " + Zodiac());
+            } while (runZodiac != "n");
 
         }
         static int Tria(int x) // 12. Tria.
@@ -302,6 +319,90 @@ namespace D22_ovn_1
             int lo = Min2(m, n), hi = Max2(m, n);
             while (lo <= hi) sum += Inverse(lo++);
             return sum;
+        }
+        static double SumOfInversesUpTo(int n) //26
+        {
+            double sum = 0;
+            int lo = 1;
+            while (lo <= n) sum += Inverse(lo++);
+            return sum;
+        }
+        static int Sign(double x) //27
+        {
+            if (x == 0) return 0;
+            return x < 0 ? -1 : 1;
+        }
+        static double Abs(double x) //28
+        {
+            return x < 0 ? -1 * x : x;
+        }
+        static bool IsPrime(int n) //29
+        {
+            for(int i = 2; i < n; i++)
+            {
+                if (IsDivisible(n, i)) return false;
+            }
+            return true;
+        }
+        static ulong Factorial (int n) //30
+        {
+            ulong sum = 1;
+            for (int i = 2; i <= n; i++)
+            {
+                sum *= (ulong) i;
+            }
+            return sum;
+        }
+        static string Zodiac() // 31
+        {
+            string[] months = { "januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december" };
+
+            string födelsemånad = GetString("Ange födelsemånad: ");
+            while (!months.Contains(födelsemånad))
+            {
+                födelsemånad = GetString("Ogiltig månad. Ange födelsemånad: ");
+            }
+            int nMonth = Array.IndexOf(months, födelsemånad) + 1,
+                nDate = GetInt("Ange födelsedatum: "),
+                max;
+            if (new int[] { 1, 3, 5, 7, 8, 10, 12 }.Contains(nMonth)) max = 31;
+            else if (nMonth == 2) max = 29;
+            else max = 30;
+            while(nDate > max || nDate < 1)
+            {
+                nDate = GetInt("Ogiltigt datum. Ange födelsedatum: ");
+            }
+
+            switch(nMonth)
+            {
+                case 1:
+                    return nDate <= 20 ? "Stenbocken" : "Vattumannen";
+                case 2:
+                    return nDate <= 18 ? "Vattumannen" : "Fiskarna";
+                case 3:
+                    return nDate <= 20 ? "Fiskarna" : "Vädruen";
+                case 4:
+                    return nDate <= 20 ? "Väduren" : "Oxen";
+                case 5:
+                    return nDate <= 21 ? "Oxen" : "Tvillingarna";
+                case 6:
+                    return nDate <= 21 ? "Tvillingarna" : "Kräftan";
+                case 7:
+                    return nDate <= 22 ? "Kräftan" : "Lejonet";
+                case 8:
+                    return nDate <= 23 ? "Lejonet" : "Jungfrun";
+                case 9:
+                    return nDate <= 23 ? "Jungfrun" : "Vågen";
+                case 10:
+                    return nDate <= 23 ? "Vågen" : "Skorpionen";
+                case 11:
+                    return nDate <= 22 ? "Skorpionen" : "Skytten";
+                case 12:
+                    return nDate <= 21 ? "Skytten" : "Stenbocken";
+                default:
+                    return "Okänt fel.";
+            }
+
         }
     }
 }
