@@ -125,7 +125,53 @@ namespace D22_ovn_1
                 if (!found) Console.WriteLine("'{0}' känns inte igen som land. Försök igen.", input);
             } while (true);
 
-
+            //10-11. Växelström/vägguttag:
+            //Gör denna med få element för att spara tid...
+            Console.WriteLine("\n\nVäxelström/vägguttag. Anger elinformation om länder.");
+            while(true)
+            {
+                string uttagstyp;
+                int husvolttal, frekvens;
+                input = GetString("Ange land ('quit' för att avsluta) :");
+                if (input == "Norge")
+                {
+                    uttagstyp = "F, C";
+                    husvolttal = 230;
+                    frekvens = 50;
+                }
+                else if (input == "Finland")
+                {
+                    uttagstyp = "F, C";
+                    husvolttal = 230;
+                    frekvens = 50;
+                }
+                else if (input == "Storbritannien")
+                {
+                    uttagstyp = "D, M";
+                    husvolttal = 230;
+                    frekvens = 50;
+                }
+                else if (input == "Surinam")
+                {
+                    uttagstyp = "F, C";
+                    husvolttal = 120;
+                    frekvens = 60;
+                }
+                else if (input == "Sverige")
+                {
+                    uttagstyp = "F, C";
+                    husvolttal = 230;
+                    frekvens = 50;
+                }
+                else if (input == "quit")
+                    break;
+                else
+                {
+                    Console.WriteLine("'{0}' känns inte igen som land. Giltiga länder är Norge, Storbritannien, Finland, Surinam och Sverige.", input);
+                    continue;
+                }
+                Console.WriteLine("Elinformation för {0}:\n uttagstyp: {1}\n husvolttal = {2} V\n frekvens = {3} Hz\n", input, uttagstyp, husvolttal, frekvens);
+            }
 
         }
     }
