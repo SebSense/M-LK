@@ -1,4 +1,6 @@
-﻿namespace D22_ovn_1
+﻿using System.Text.RegularExpressions;
+
+namespace D22_ovn_1
 {
     internal class Program
     {
@@ -20,8 +22,19 @@
                 kronorPerLiterMjölk = 14.5F;
             Console.WriteLine("Pris för två limpor, en ask margarin och en liter mjölk: " + (kronorPerLimpa * 2F + kronorPerAskMargarin + kronorPerLiterMjölk) + "kr.");
             //6.Seklets längd
-            decimal sekunderPerSekel = 60m * 60m * 24M * 365.25m * 100m;
-            Console.WriteLine($"Det går {sekunderPerSekel} sekunder på ett sekel.");
+            decimal sekunderPerAr = 60m * 60m * 24M * 365.25m;
+            Console.WriteLine($"Det går {sekunderPerAr * 100m} sekunder på ett sekel.");
+            //7. Ålder i år till sekunder:
+            Regex reg = new Regex(@"\d+$");
+            Match match;
+            string input;
+            do
+            {
+                Console.Write("Hur gammal är du? (år i heltal):");
+                input = Console.ReadLine();
+                match = reg.Match(input);
+            } while (!match.Success);
+            Console.WriteLine($"Du är {(ulong) (sekunderPerAr * Int32.Parse(input))} sekunder gammal");
 
         }
     }
