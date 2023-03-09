@@ -19,6 +19,81 @@ namespace D23_ovn_1
             //51:
             public void Print() { Console.WriteLine(" Proper name: {0}\n  Visual magnitude: {1}\n  Distance: {2} lightyears", this.Name, this.Magnitude, this.Distance); } 
         }
+        //53:
+        class Person
+        { //55:
+            private string förnamn, efternamn, telefonnummer, födelsemånad;
+            private int ålder, födelsedag;
+            public Person(string förnamn, string efternamn) { this.förnamn = förnamn; this.efternamn = efternamn;  telefonnummer = "okänt"; ålder = 0; födelsemånad = "okänt"; födelsedag = 0; }
+            public void Print() //54.
+            {
+                Console.WriteLine($"{förnamn} {efternamn}:\n" +
+                    $" Telefonnummer: {telefonnummer}\n" +
+                    $" Ålder: {ålder}\n" +
+                    $" Födelsemånad: {födelsemånad}\n" +
+                    $" Födelsedag: {födelsedag}");
+            }
+            //56:
+            public void SetAge(int age) { this.ålder = age; }
+            public void SetPhone(string phone) { this.telefonnummer = phone; }
+            public void SetMonth(string month)
+            {
+                string[] months = { "januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december" };
+                if (months.Contains(month.ToLower())) födelsemånad = month.ToLower();
+                else födelsemånad = "okänt";
+            }
+            public void SetDate(int date)
+            {
+                if (new string[] { "april", "juni", "september", "november" }.Contains(födelsemånad))
+                {
+                    if (date < 31 && date > 0) födelsedag = date;
+                    else födelsedag = 0;
+                } 
+                else if (födelsemånad == "februari")
+                {
+                    if (date < 30 && date > 0) födelsedag = date;
+                    else födelsedag = 0;
+                }
+                else
+                {
+                    if (date < 32 && date > 0) födelsedag = date;
+                    else födelsedag = 0;
+                }
+            }
+            //57:
+            public string AstroFortune()
+            {
+                string månad = födelsemånad;
+                int dag = födelsedag;
+                if (månad == "januari")
+                    if (dag <= 20) return "Stenbocken"; else return "Vattumannen";
+                else if (månad == "februari")
+                    if (dag <= 18) return "Vattumannen"; else return "Fiskarna";
+                else if (månad == "mars")
+                    if (dag <= 20) return "Fiskarna"; else return "Väduren";
+                else if (månad == "april")
+                    if (dag <= 21) return "Väduren"; else return "Oxen";
+                else if (månad == "maj")
+                    if (dag <= 21) return "Oxen"; else return "Tvillingarna";
+                else if (månad == "juni")
+                    if (dag <= 21) return "Tvillingarna"; else return "Kräftan";
+                else if (månad == "juli")
+                    if (dag <= 22) return "Kräftan"; else return "Lejonet";
+                else if (månad == "augusti")
+                    if (dag <= 23) return "Lejonet"; else return "Jungfrun";
+                else if (månad == "september")
+                    if (dag <= 23) return "Jungfrun"; else return "Vågen";
+                else if (månad == "oktober")
+                    if (dag <= 23) return "Vågen"; else return "Skorpionen";
+                else if (månad == "november")
+                    if (dag <= 22) return "Skorpionen"; else return "Skytten";
+                else if (månad == "december")
+                    if (dag <= 21) return "Skytten"; else return "Stenbocken";
+                else
+                    return "okänt";
+
+            }
+        }
         //42. "Random" object
         static Random rand = new Random();
         static void Main(string[] args)
@@ -119,7 +194,17 @@ namespace D23_ovn_1
                 new Star("Rigil Kentaurus", -0.27, 4.4),
                 new Star("Arcturus", -0.05, 37) };
             foreach (Star s in stars) s.Print();
-            
+            //54:
+            Person arthur = new Person("Arthur", "Jansson");
+            arthur.Print();
+            //56:
+            arthur.SetPhone("070-666 420 69");
+            arthur.SetMonth("sEpTeMBEr");
+            arthur.SetAge(28);
+            arthur.SetDate(12);
+            arthur.Print();
+            //58.
+            Console.WriteLine(arthur.AstroFortune());
         }
         //44.
         static double SumDoubles(double[] data)
