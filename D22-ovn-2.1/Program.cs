@@ -9,7 +9,6 @@ namespace D22_ovn_2._1
         class Weapon
         {
             public string Name { get; private set; }
-
             public int Times { get; private set; }
             public int Die { get; private set; }
             public Weapon(string name, int times, int die)
@@ -104,7 +103,7 @@ namespace D22_ovn_2._1
             NPC player = new("Player", new Weapon("Longsword", 6, 2), new Armor("Mail armor", 4), 6, 20);
             NPC monster = new("Monster", new Weapon("Claw", 6, 3), new Armor("Scaly hide", 3), 0, 30);
             int monster_wins = 0, player_wins = 0;
-            for (int j = 0; j < 100; j++)
+            for (int i = 0; i < 100; i++)
             {
                 int r = Die6();
                 while (player.GetHP() > 0 && monster.GetHP() > 0)
@@ -118,6 +117,14 @@ namespace D22_ovn_2._1
                 monster.FullHeal();
             }
             Console.WriteLine("Monster wins: {0}  Player wins: {1}", monster_wins, player_wins);
+            //35:
+            Console.WriteLine(Fibonacci(0));
+            Console.WriteLine(Fibonacci(1));
+            Console.WriteLine(Fibonacci(2));
+            Console.WriteLine(Fibonacci(3));
+            Console.WriteLine(Fibonacci(11));
+            Console.WriteLine(Fibonacci(19));
+            Console.WriteLine(Fibonacci(144));
         }
 
         //31:
@@ -142,5 +149,17 @@ namespace D22_ovn_2._1
             while (0 < m--) sum += Die(n);
             return sum;
         }
+        //35:
+        static ulong Fibonacci(int n)
+        //Fibonacci(n) - Returns the n:th number in the Fibonacci sequence by recursively creating each number.
+        {
+            if(n == 0) return 0;
+            return Fibonacci_Recurse((ulong)0, (ulong)1, n);
+        }
+        static ulong Fibonacci_Recurse(ulong a, ulong b, int n)
+        {
+            return n == 1 ? b : Fibonacci_Recurse(b, a + b, n - 1);
+        }
+
     }
 }
