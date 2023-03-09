@@ -4,6 +4,21 @@ namespace D23_ovn_1
 {
     internal class Program
     {
+        class Star //49
+        {
+            private string Name { get; set; }
+            private double Magnitude { get; set; }
+            private double Distance { get; set; }
+            public Star(string name, double magnitude, double distance) 
+            { //50
+                Name = name;
+                Magnitude = magnitude;
+                Distance = distance;
+            }
+            public Star() { this.Name = "newStar"; this.Magnitude = 0.0; this.Distance = 0.0; }
+            //51:
+            public void Print() { Console.WriteLine(" Proper name: {0}\n  Visual magnitude: {1}\n  Distance: {2} lightyears", this.Name, this.Magnitude, this.Distance); } 
+        }
         //42. "Random" object
         static Random rand = new Random();
         static void Main(string[] args)
@@ -63,7 +78,7 @@ namespace D23_ovn_1
             {
                 stat[rArr[i]]++;
             }
-            for( int i = 0; i < stat.Length; i++)
+            for (int i = 0; i < stat.Length; i++)
             {
                 Console.WriteLine(i + " " + stat[i]);
             }
@@ -92,6 +107,19 @@ namespace D23_ovn_1
             PrintArray(femDubs);
             PrintArray(InsertionSortDoubles(femDubs));
             PrintArray(femDubs);
+            //49
+            //Star sirius = new Star() { Name = "sirius", Magnitude = -1.46, Distance = };
+            //Console.WriteLine(" Name: {0}\n Magnitude: {1}\n Distance: ", sirius.Name, sirius.Magnitude, sirius.Distance);
+            Star sirius = new Star("Sirius", -1.46, 8.6) { };
+            sirius.Print();
+            //52:
+            Star[] stars = { new Star("Sun", -26.74, 0.000015823820),
+                sirius,
+                new Star("Canopus", -0.74, 310),
+                new Star("Rigil Kentaurus", -0.27, 4.4),
+                new Star("Arcturus", -0.05, 37) };
+            foreach (Star s in stars) s.Print();
+            
         }
         //44.
         static double SumDoubles(double[] data)
