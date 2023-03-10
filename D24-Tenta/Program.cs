@@ -8,6 +8,55 @@ namespace D24_Tenta
         const double C_IN_KMPS = 299792.458;
         const int SUN_DISTANCE_IN_KM = 149598023;
         const int SEC_PER_MIN = 60;
+        //Uppgift 6: Species:
+        class Species
+        {
+            public string Name { get; private set; }
+            public string Genus { get; private set; }
+            public string Epithet { get; private set; } //"Specific epithet" also simply known as "species"
+            public List<string> Ranges { get; private set; } //Using List to keep it mutable
+            public Species(string n, string g, string e, string[] r)
+            {
+                Name = n != null ? n : "Okänt";
+                Genus = g != null ? g : "Okänt";
+                Epithet = e != null ? e : "Okänt";
+                Ranges = new List<string>();
+                AddRangesArray(r);
+            }
+            public void Print() //Prints a list of all attributs for debug purposes.
+            {
+                Console.WriteLine("Namn: {0}\n släkte: {1}\n art: {2}\n utbredning: {3}", Name, Genus, Epithet, ListRanges());
+            }
+            public void PrintInformative() //Prints an informative sentence about the species. 
+            {
+                Console.WriteLine($"Arten {Name.ToLower()} ({Genus} {Epithet}) återfinns i {ListRanges()}.");
+            }
+            public string ListRanges() //Returns Ranges[] Array as a string formatted as: "element, element,... element and element"
+            {
+                if (Ranges.Count == 0) return "Okänd utbredning";
+                if (Ranges.Count == 1) return Ranges[0];
+                string str = Ranges[0];
+                int ln = Ranges.Count - 1;
+                for (int i = 1; i < ln; i++) str = String.Concat(str, ", ", Ranges[i]);
+                return String.Concat(str, " and ", Ranges[ln]);
+            }
+            public void AddRange(string r)
+            {
+                Ranges.Add(r);
+            }
+            public void AddRangesList(List<string> rs)
+            {
+                Ranges.Concat(rs);
+            }
+            public void AddRangesArray(string[] rs)
+            {
+                Array.ForEach(rs, r => Ranges.Add(r));
+            }
+            public void SetRanges(List<string> rs)
+            {
+                Ranges = rs;
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("D24-Tenta.exe - Numrerade uppgifter från tentamen\n");
@@ -47,6 +96,16 @@ namespace D24_Tenta
                 $" SumInverses(2, 10) = {SumInverses(2, 10)}\n" +
                 $" SumInverses(6, 11) = {SumInverses(6, 11)}\n" +
                 $" SumInverses(7, 9) = {SumInverses(7, 9)}\n");
+
+            //Uppgit 6: Skapa och skriv ut instanser av klassen 'Species'
+            Species[] arter = {
+                new Species("Vildhäst", "Equus", "ferus", new string[] { "Mongoliet" }),
+                new Species("Bergszebra", "Equus", "zebra", new string[] {"Namibien", "Sydafrika"}),
+                new Species("Stäppzebra", "Equus", "quagga", new string[] {"Egypten", "Sudan", "Eritrea", "Etiopien" }),
+                new Species("Afrikansk vildåsna", "Equus", "africanus", new string[] {"Egypten", "Sudan", "Eritrea", "Etiopien" })
+                };
+            Console.WriteLine("\nUppgift 6: Skriv ut fyra instanser av klassen 'Species':");
+            Array.ForEach(arter, art => art.PrintInformative());
         }
 
         //Static-metoder:
