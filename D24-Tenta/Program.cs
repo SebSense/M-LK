@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections;
+using System.Linq.Expressions;
 
 namespace D24_Tenta
 {
@@ -84,11 +85,9 @@ namespace D24_Tenta
             Console.Write("Uppgift 4: Flytta alla element i en array:\n" +
                 " Oförändrat array:           ");
             PrintArray<int>(oneToTen);
-            Console.Write(
-                " Oförändrat array shift + 1: ");
+            Console.Write(" Oförändrat array shift + 1: ");
             PrintArray<int>(ShiftArray<int>(oneToTen, 1));
-            Console.Write(
-                " Oförändrat array shift - 3: ");
+            Console.Write(" Oförändrat array shift - 3: ");
             PrintArray<int>(ShiftArray<int>(oneToTen, -3));
 
             //Uppgift 5: Test av att summera inverser:
@@ -104,7 +103,7 @@ namespace D24_Tenta
                 new Species("Stäppzebra", "Equus", "quagga", new string[] {"Egypten", "Sudan", "Eritrea", "Etiopien" }),
                 new Species("Afrikansk vildåsna", "Equus", "africanus", new string[] {"Egypten", "Sudan", "Eritrea", "Etiopien" })
                 };
-            Console.WriteLine("\nUppgift 6: Skriv ut fyra instanser av klassen 'Species':");
+            Console.WriteLine("\nUppgift 6: Skriv ut fyra instanser av klassen 'Species':\n");
             Array.ForEach(arter, art => art.PrintInformative());
         }
 
@@ -128,17 +127,20 @@ namespace D24_Tenta
         {
             int ln = arr.Length;
             T[] newArr = new T[ln];
-            //for loop counter 'i' is not 0-indexed in order to simplify rebasing it from base 10 to base 'ln'.
-            for (int i = 1; i <= ln; i++)
+            for (int i = 0; i < ln; i++)
             {
-                int newIndex = (i + shift);
-                //modulates newIndex from base 10 to base 'ln'
-                while (newIndex > ln) newIndex -= ln;
-                while (newIndex < 1) newIndex += ln;
-                //uses -1 for variables to account for 0-indexing.
-                newArr[i - 1] = arr[newIndex - 1];
+                int newIndex = i + shift;
+                //modulates newIndex from base 10 to base 'ln'. Adds and subtracts 1 to account for 0-indexing
+                newIndex = Rebase(newIndex + 1, ln) - 1;
+                newArr[i] = arr[newIndex];
             }
             return newArr;
+        }
+        static int Rebase (int n, int b)
+        //Modulates int n from base 10 to base 'b'
+        {
+            n %= b;
+            return n < 1 ? n + b : n;
         }
         static void PrintArray<T>(T[] array)
         //PrintArray - Prints an array to terminal like: "{ element, element, ... element }\n"
