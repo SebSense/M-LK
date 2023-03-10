@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 namespace D24_Tenta
 {
@@ -156,6 +157,34 @@ namespace D24_Tenta
             return (m < n)
                 ? (1.0 / m) + SumInverses(m + 1, n)
                 : (1.0 / m) + SumInverses(m - 1, n);
+        }
+        static int GetInt(string prompt)
+        //Gets an int from user
+        {
+            Regex regInt = new Regex(@"^-?\d+$");
+            Match match;
+            string input;
+            do
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine();
+                match = regInt.Match(input);
+            } while (!match.Success);
+            return Int32.Parse(input);
+        }
+        static double GetDouble(string prompt)
+        //Gets a double from user
+        {
+            Regex regDouble = new Regex(@"^-?\d+[.,]?(?<=[.,])\d+$");
+            Match match;
+            string input;
+            do
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine();
+                match = regDouble.Match(input);
+            } while (!match.Success);
+            return Double.Parse(input.Replace('.', ','));
         }
     }
 }
