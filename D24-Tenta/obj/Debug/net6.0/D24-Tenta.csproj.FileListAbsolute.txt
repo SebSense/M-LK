@@ -1,0 +1,15 @@
+D:\dev\moelk\repos\D24-Tenta\bin\Debug\net6.0\D24-Tenta.exe
+D:\dev\moelk\repos\D24-Tenta\bin\Debug\net6.0\D24-Tenta.deps.json
+D:\dev\moelk\repos\D24-Tenta\bin\Debug\net6.0\D24-Tenta.runtimeconfig.json
+D:\dev\moelk\repos\D24-Tenta\bin\Debug\net6.0\D24-Tenta.dll
+D:\dev\moelk\repos\D24-Tenta\bin\Debug\net6.0\D24-Tenta.pdb
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.csproj.AssemblyReference.cache
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.AssemblyInfoInputs.cache
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.AssemblyInfo.cs
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.csproj.CoreCompileInputs.cache
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.dll
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\refint\D24-Tenta.dll
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.pdb
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\D24-Tenta.genruntimeconfig.cache
+D:\dev\moelk\repos\D24-Tenta\obj\Debug\net6.0\ref\D24-Tenta.dll
