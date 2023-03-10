@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
@@ -62,6 +63,9 @@ namespace D24_Tenta
         static void Main(string[] args)
         {
             Console.WriteLine("D24-Tenta.exe - Numrerade uppgifter från tentamen\n");
+            string input;
+            int nA, nB;
+            double dA, dB;
 
             //Uppgift 1: Variabel och utskrift:
             double minutesForSunlightToReachEarth = (SUN_DISTANCE_IN_KM / C_IN_KMPS) / SEC_PER_MIN;
@@ -73,29 +77,72 @@ namespace D24_Tenta
                 $" InvSqr(3) = {InvSqr(3)}\n" +
                 $" InvSqr(4) = {InvSqr(4)}\n" +
                 $" InvSqr(5) = {InvSqr(5)}\n");
+            do
+            {
+                Console.Write("Fortsätt testa 'InvSqr(double x)' (y/n)? :");
+                input = Console.ReadLine();
+                if (input == "y")
+                {
+                    dA = GetDouble("Ange x: ");
+                    Console.WriteLine($" InvSqr({dA}) = {InvSqr(dA)}");
+                }
+            } while (input != "n");
 
             //Uppgift 3: Test och utskrifter:
-            Console.WriteLine($"Uppgift 3: Test av 'SumEvens(int a, int b)' static-metod:\n" +
+            Console.WriteLine($"\nUppgift 3: Test av 'SumEvens(int a, int b)' static-metod:\n" +
                 $" SumEvens(2, 10) = {SumEvens(2, 10)}\n" +
                 $" SumEvens(6, 11) = {SumEvens(6, 11)}\n" +
                 $" SumEvens(7, 9) = {SumEvens(7, 9)}\n");
+            do
+            {
+                Console.Write("Fortsätt testa 'SumEvens(int a, int b)' (y/n)? :");
+                input = Console.ReadLine();
+                if (input == "y")
+                {
+                    nA = GetInt("Ange a: ");
+                    nB = GetInt("Ange b: ");
+                    Console.WriteLine(" SumEvens({0}, {1}) = " + SumEvens(nA, nB), nA, nB);
+                }
+            } while (input != "n");
 
             //Uppgift 4: Flytta element i en array:
             int[] oneToTen = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-            Console.Write("Uppgift 4: Flytta alla element i en array:\n" +
+            Console.Write("\nUppgift 4: Flytta alla element i en array:\n" +
                 " Oförändrat array:           ");
             PrintArray<int>(oneToTen);
             Console.Write(" Oförändrat array shift + 1: ");
             PrintArray<int>(ShiftArray<int>(oneToTen, 1));
             Console.Write(" Oförändrat array shift - 3: ");
             PrintArray<int>(ShiftArray<int>(oneToTen, -3));
+            do
+            {
+                Console.Write("\nFortsätt testa att shifta {1, 2,...10 } (y/n)? :");
+                input = Console.ReadLine();
+                if (input == "y")
+                {
+                    nA = GetInt("Ange heltal shift (negativt för att shifta åt vänster): ");
+                    PrintArray<int>(oneToTen);
+                    PrintArray<int>(ShiftArray<int>(oneToTen, nA));
+                }
+            } while (input != "n");
 
             //Uppgift 5: Test av att summera inverser:
             Console.Write($"\nUppgift 5: Summera inverser:\n" +
                 $" SumInverses(2, 10) = {SumInverses(2, 10)}\n" +
                 $" SumInverses(6, 11) = {SumInverses(6, 11)}\n" +
                 $" SumInverses(7, 9) = {SumInverses(7, 9)}\n");
+            do
+            {
+                Console.Write("\nFortsätt testa 'SumInverses(int a, int b)' (y/n)? :");
+                input = Console.ReadLine();
+                if (input == "y")
+                {
+                    nA = GetInt("Ange a: ");
+                    nB = GetInt("Ange b: ");
+                    Console.WriteLine(" SumInverses({0}, {1}) = " + SumInverses(nA, nB), nA, nB);
+                }
+            } while (input != "n");
 
             //Uppgit 6: Skapa och skriv ut instanser av klassen 'Species'
             Species[] arter = {
@@ -161,7 +208,7 @@ namespace D24_Tenta
         static int GetInt(string prompt)
         //Gets an int from user
         {
-            Regex regInt = new Regex(@"^-?\d+$");
+            Regex regInt = new Regex(@"^-?\d*$");
             Match match;
             string input;
             do
@@ -175,7 +222,7 @@ namespace D24_Tenta
         static double GetDouble(string prompt)
         //Gets a double from user
         {
-            Regex regDouble = new Regex(@"^-?\d+[.,]?(?<=[.,])\d+$");
+            Regex regDouble = new Regex(@"^-?\d+((\.|,)\d+)?$");
             Match match;
             string input;
             do
