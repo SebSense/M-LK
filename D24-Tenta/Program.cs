@@ -41,6 +41,12 @@ namespace D24_Tenta
             Console.Write(
                 " Oförändrat array shift - 3: ");
             PrintArray<int>(ShiftArray<int>(oneToTen, -3));
+
+            //Uppgift 5: Test av att summera inverser:
+            Console.Write($"\nUppgift 5: Summera inverser:\n" +
+                $" SumInverses(2, 10) = {SumInverses(2, 10)}\n" +
+                $" SumInverses(6, 11) = {SumInverses(6, 11)}\n" +
+                $" SumInverses(7, 9) = {SumInverses(7, 9)}\n");
         }
 
         //Static-metoder:
@@ -51,7 +57,7 @@ namespace D24_Tenta
         }
         //Uppgift 3: Summan av jämna tal mellan två tal:
         static double SumEvens(int a, int b, int sum = 0)
-        //SumEvens - Returns the sum of all even integers between a and b (inclusive)
+        //SumEvens - Returns the sum of all even integers between a and b (inclusive) using recursion.
         {
             if (a % 2 == 0) sum += a;
             if (a == b) return sum;
@@ -63,12 +69,15 @@ namespace D24_Tenta
         {
             int ln = arr.Length;
             T[] newArr = new T[ln];
-            for (int i = 0; i < ln; i++)
+            //for loop counter 'i' is not 0-indexed in order to simplify rebasing it from base 10 to base 'ln'.
+            for (int i = 1; i <= ln; i++)
             {
                 int newIndex = (i + shift);
-                if (newIndex + 1 > ln) newIndex -= (newIndex + 1 % ln) - 1;
-                else if (newIndex < 0) newIndex += ln;
-                newArr[i] = arr[newIndex];
+                //modulates newIndex from base 10 to base 'ln'
+                while (newIndex > ln) newIndex -= ln;
+                while (newIndex < 1) newIndex += ln;
+                //uses -1 for variables to account for 0-indexing.
+                newArr[i - 1] = arr[newIndex - 1];
             }
             return newArr;
         }
@@ -77,6 +86,15 @@ namespace D24_Tenta
         {
             Console.Write("{ ");
             for (int i = 0, ln = array.Length; i < ln; i++) Console.Write(array[i] + (i != ln - 1 ? ", " : " }\n"));
+        }
+        //Uppgift 5:
+        static double SumInverses(int m, int n)
+        //SumInverses - Returns the sum of the inverses (1 / int) for all integers between m and n (inclusive).
+        {
+            if (m == n) return 1.0 / m;
+            return (m < n)
+                ? (1.0 / m) + SumInverses(m + 1, n)
+                : (1.0 / m) + SumInverses(m - 1, n);
         }
     }
 }
