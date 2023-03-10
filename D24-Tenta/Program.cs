@@ -62,7 +62,17 @@ namespace D24_Tenta
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("D24-Tenta.exe - Numrerade uppgifter från tentamen\n");
+            Console.WriteLine(
+                "  .______________________________________________.\n" +
+                " /                                                 \\\n" +
+                "|     < < <   D 2 4 - T e n t a . e x e   > > >     |\n" +
+                "|     *****************************************     |\n" +
+                "|     Numrerade uppgifter från tentamen i kursen    |\n" +
+                "|    \"Introduktion till Datorer och Programmering\"  |\n" +
+                "|     vid programmet Mjukvaruutvecklare vid MÖLK    |\n" +
+                "|     ******************************************    |\n" +
+                "|       Av: Sebastian Senic  Datum: 2023-03-10      |\n" +
+                " \\._______________________________________________./\n");
             string input;
             int nA, nB;
             double dA, dB;
@@ -117,11 +127,11 @@ namespace D24_Tenta
             PrintArray<int>(ShiftArray<int>(oneToTen, -3));
             do
             {
-                Console.Write("\nFortsätt testa att shifta {1, 2,...10 } (y/n)? :");
+                Console.Write("\nFortsätt testa ShiftArray(arr,int) för arr = {1, 2,...10 } (y/n)? :");
                 input = Console.ReadLine();
                 if (input == "y")
                 {
-                    nA = GetInt("Ange heltal shift (negativt för att shifta åt vänster): ");
+                    nA = GetInt("Ange int shift (negativt för att shifta åt vänster): ");
                     PrintArray<int>(oneToTen);
                     PrintArray<int>(ShiftArray<int>(oneToTen, nA));
                 }
