@@ -21,11 +21,24 @@
                 $" InvSqr(4) = {InvSqr(4)}\n" +
                 $" InvSqr(5) = {InvSqr(5)}\n");
 
+            //Uppgift 3: Test och utskrifter:
+            Console.WriteLine($"Uppgift 3: Test av 'SumEvens(int a, int b)' static-metod:\n" +
+                $" SumEvens(2, 10) = {SumEvens(2, 10)}\n" +
+                $" SumEvens(6, 11) = {SumEvens(6, 11)}\n" +
+                $" SumEvens(7, 9) = {SumEvens(7, 9)}\n");
         }
         //Uppgift 2: Static-metod:
         static double InvSqr(double x)
         {
             return 1 / (x * x);
+        }
+        //Uppgift 3: Summan av jämna tal mellan två tal:
+        static double SumEvens(int a, int b, int sum = 0)
+        //SumEvens(int a, int b) - Returns the sum of all even integers between a and b (inclusive)
+        {
+            if (a % 2 == 0) sum += a;
+            if (a == b) return sum;
+            return a > b ? SumEvens(a - 1, b, sum) : SumEvens(a + 1, b, sum);
         }
     }
 }
