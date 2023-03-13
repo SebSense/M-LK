@@ -11,9 +11,8 @@ namespace wc
         /// /s - stat. Returns statistics for number of times characters a-z (not case-sensitve) occurs in the file.
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args_inactive)
+        static void Main(string[] args)
         {
-            string[] args = { "/h", "h"};
             int ln = args.Length;
             if (ln < 1 || ln > 2) { Console.WriteLine("Syntax Error. WordCount usage: wc <filename.txt> <argument> "); return; }
             if (args[0] == "/h" || args[0] == "help")
