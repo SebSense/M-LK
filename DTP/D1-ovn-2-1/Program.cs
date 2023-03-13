@@ -50,3 +50,9 @@ namespace D1_ovn_2_1
         }
     }
 }
+//21-ovn-2-3: Sekvensiering
+/*
+ * 1. Ändra filnamn till wc.exe
+ * 2. Ändra input till hårdkodade argument {filnamn.txt} för count därefter {filnamn.txt /s} (för stat)
+ * 3. Mappa if-else kedjan till de hårdkodade argumenten och provkör programmet.
+ * 4. Ändra de hårkodade argumenten till args[], lägg .exe i %PATH och provkör från cmd
