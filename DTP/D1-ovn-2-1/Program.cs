@@ -16,9 +16,11 @@ namespace D1_ovn_2_1
                 //Fråga efter kommdo
                 if(input == "count")
                 {
-                    //Fråga efter filnamn
+                    //Ändra till att fråga efter filnamn
                     string text = File.ReadAllText(@"D:\dev\moelk\repos\DTP\D1-ovn-2-1\obj\Debug\net6.0\testfile.txt");
-                    Console.Write(text);
+                    Console.WriteLine(text);
+                    Console.WriteLine($"Antal rader i {filename}: " + (1 + text.Count(c => c == '\n')));
+                    
                     input = "quit";
                     //Anropa metoder för att räkna:
                     //Antal rader
