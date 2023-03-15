@@ -9,6 +9,8 @@ namespace D1_ovn_3
     { 
         class Link
         {
+            //TBD: Add one string containing the unformatted line from the savefile
+            //TBD: Make the class abstract - change to private variables with properties.
             public string topic, site, title, link;
             public Link(string topic, string site, string title, string link)
             {
@@ -32,15 +34,12 @@ namespace D1_ovn_3
             }
         }
         static void Main(string[] args)
-        {
-            //NYI: En process för att öppna och ändra i filer.
-
-            
+        {  
             List<Link> weblinks = new();
-            //Öppna fil...
             string path = Directory.GetCurrentDirectory();
-            string filename = null;
+            string filename;
             string input;
+            //REPL:
             do
             {
                 Console.Write("\n:");
@@ -53,13 +52,18 @@ namespace D1_ovn_3
                     Process.Start("notepad", filename);
                 }
                 else if (ln == 2 && words[0] == "load")
-                {
+                {   //CLEANUP:
                     filename = words[1];
                     string[] filetext_lines = File.ReadAllLines(path + "\\" + filename);
-                    Array.ForEach(filetext_lines, line => weblinks.Add(new Link(line)));
+                    foreach(string line in filetext_lines)
+                    {
+                        if (weblinks.All(l => String.Join(';',l.topic,l.site,l.title,l.link) != line)) weblinks.Add(new Link(line));
+                    }
+                    //Array.ForEach(filetext_lines, line => weblinks.Add(new Link(line)));
                 }
                 else if (input == "list")
                 {
+                    //CLEANUP: Turn into methodsa
                     for(int i = 0; i < weblinks.Count; i++)
                     {
                         Console.Write((i + 1) + ".");
@@ -91,12 +95,33 @@ namespace D1_ovn_3
                         }
                     }
                 }
-                else if (input == "open")
-                {
-
+                else if (words[0] == "open")
+                {   //CLEANUP:
+                    using (Process browser = new Process()) 
+                    {
+                        browser.StartInfo.UseShellExecute = true;
+                        if (ln == 2)
+                        {
+                            if (int.TryParse(words[1], out int index))
+                            {
+                                browser.StartInfo.FileName = weblinks[index - 1].link;
+                                browser.Start();
+                            }
+                        }
+                        else if (ln == 3 && words[1] == "topic")
+                        {
+                            foreach (Link link in weblinks)
+                            {
+                                if (link.topic != words[2]) continue;
+                                browser.StartInfo.FileName = link.link;
+                                browser.Start();
+                            }
+                        } 
+                    }
                 }
                 else if (ln < 3 && words[0] == "save")
-                {
+                {   // TBD: Spara inte dubletter.
+                    // CLEANUP:
                     if (ln == 2) filename = words[1];
                     StreamWriter writer = new StreamWriter(path + "\\" + filename);
                     for(int i = 0; i < weblinks.Count; i++)
