@@ -27,8 +27,8 @@ namespace D1_ovn_3
             }
             public void Print()
             {
-                Console.WriteLine(" Topic: " + topic + "\n   Site: " + site + "" +
-                    "\n   Title: " + title + "\n   Link: " + link);
+                Console.WriteLine("\tTopic: " + topic + "\n\tSite: " + site + "" +
+                    "\n\tTitle: " + title + "\n\tLink: " + link);
             }
         }
         static void Main(string[] args)
@@ -95,8 +95,9 @@ namespace D1_ovn_3
                 {
 
                 }
-                else if (input == "save")
+                else if (ln < 3 && words[0] == "save")
                 {
+                    if (ln == 2) filename = words[1];
                     StreamWriter writer = new StreamWriter(path + "\\" + filename);
                     for(int i = 0; i < weblinks.Count; i++)
                     {
