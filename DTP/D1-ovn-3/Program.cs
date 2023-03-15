@@ -43,7 +43,7 @@ namespace D1_ovn_3
             string input;
             do
             {
-                Console.Write(":");
+                Console.Write("\n:");
                 input = Console.ReadLine();
                 string[] words = input.Split(' ');
                 int ln = words.Length;
@@ -64,6 +64,31 @@ namespace D1_ovn_3
                     {
                         Console.Write((i + 1) + ".");
                         weblinks[i].Print();
+                    }
+                }
+                else if (ln == 3 && words[0] == "list")
+                {
+                    if (words[1] == "topic")
+                    {
+                        foreach (Link link in weblinks)
+                        {
+                            if (link.topic == words[2])
+                            {
+                                Console.Write((weblinks.IndexOf(link) + 1) + ". ");
+                                link.Print();
+                            }
+                        }
+                    }
+                    else if (words[1] == "site")
+                    {
+                        foreach (Link link in weblinks)
+                        {
+                            if (link.site == words[2])
+                            {
+                                Console.Write((weblinks.IndexOf(link) + 1) + ". ");
+                                link.Print();
+                            }
+                        }
                     }
                 }
                 else if (input == "open")
