@@ -2,95 +2,127 @@
 {
     internal class Program
     {
+        class Word
+        {
+            public string svenska { get; private set; }
+            public string latin { get; private set; } 
+            public Word(string svenska, string latin)
+            {
+                this.svenska = svenska; this.latin = latin;
+            }
+        }
         static void Main(string[] args)
         {
-            string[] svenska = { "träd", "huvud", "måne", "flytta", "pappa", "stad", "se",
-                                 null, null, null, null, null, null, null, null, null, null
-                               };
-            string[] latin = { "arbor", "caput", "luna", "movere", "pater", "urbs", "videre",
-                               null, null, null, null, null, null, null, null, null, null
-                             };
+            List<Word> ordbok = new() {
+                new Word("träd", "arbor"),
+                new Word("huvud", "caput"),
+                new Word("måne", "luna"),
+                new Word("flytta", "movere"),
+                new Word("pappa", "pater"),
+                new Word("stad", "urbs"),
+                new Word("se", "videre") };
             Console.WriteLine("Välkommen till ordlistan! Skriv 'hjälp' för hjälp!");
-            string S;
+            string command;
             do
             {
-                Console.Write("> ");
-                S = Console.ReadLine();
+                command = Input("> ");
                 // exekvera kommandot här
-                if (S == "sluta") { }
-                else if (S == "hjälp")
+                if (command == "sluta") 
                 {
-                    Console.WriteLine("hjälp        visa en lista på alla kommandon och en förklaring");
-                    Console.WriteLine("latin        slå upp ett svenskt ord och få den latinska översättningen");
-                    Console.WriteLine("ny           programmet frågar efter latin sedan svenska, uppslaget läggs in i ordlistan");
-                    Console.WriteLine("sluta        programmet avslutas");
-                    Console.WriteLine("svenska      slå upp ett latinskt ord och få den svenska översättningen");
-                    Console.WriteLine("ta bort      vi tar bort ett uppslag ur ordlistan");
-                    Console.WriteLine("visa         alla uppslag i ordlistan visas");
+                    Console.WriteLine("Adjö!");
                 }
-                else if (S == "latin")
+                else if (command == "hjälp")
                 {
-                    Console.Write("Ange latinskt ord: ");
-                    string latinskGlosa = Console.ReadLine();
-                    for (int i = 0; i < latin.Length; i++)
-                    {
-                        if (latin[i] == latinskGlosa)
-                        {
-                            Console.WriteLine($"Svensk översättning: {svenska[i]}");
-                        }
-                    }
+                    ShowHelp();
                 }
-                else if (S == "ny")
+                else if (command == "latin")
                 {
-                    Console.WriteLine("Ange en ny glosa");
-                    Console.Write("svenska: ");
-                    string sv = Console.ReadLine();
-                    Console.Write("latin: ");
-                    string la = Console.ReadLine();
-                    int i;
-                    for (i = 0; i < latin.Length; i++)
-                    {
-                        if (latin[i] == null) break;
-                    }
-                    latin[i] = la;
-                    svenska[i] = sv;
+                    Latin(ordbok, Input("Ange latinskt ord: "));
                 }
-                else if (S == "svenska")
+                else if (command == "ny")
                 {
-                    Console.Write("Ange svenskt ord: ");
-                    string sv = Console.ReadLine();
-                    for (int i = 0; i < svenska.Length; i++)
-                    {
-                        if (svenska[i] == sv)
-                        {
-                            Console.WriteLine($"Latinsk översättning: {latin[i]}");
-                        }
-                    }
+                    NewWord(ordbok);
                 }
-                else if (S == "ta bort")
+                else if (command == "svenska")
                 {
-                    for (int i = 0; i < svenska.Length; i++)
-                    {
-                        Console.WriteLine(i + ": " + latin[i] + " - " + svenska[i]);
-                    }
-                    Console.Write("Vilket index vill du ta bort: ");
-                    int index = Int32.Parse(Console.ReadLine());
-                    latin[index] = null;
-                    svenska[index] = null;
+                    Svenska(ordbok, "Ange svenskt ord: ");
                 }
-                else if (S == "visa")
+                else if (command == "ta bort")
                 {
-                    for (int i = 0; i < svenska.Length; i++)
-                    {
-                        if (latin[i] != null)
-                            Console.WriteLine(latin[i] + " - " + svenska[i]);
-                    }
+                    RemoveWord(ordbok);
+                }
+                else if (command == "visa")
+                {
+                    ShowDictionary(ordbok);
                 }
                 else
                 {
-                    Console.WriteLine($"Okänt kommando '{S}'");
+                    Console.WriteLine($"Okänt kommando '{command}'");
                 }
-            } while (S != "sluta");
+            } while (command != "sluta");
+        }
+
+        private static void ShowDictionary(List<Word> ordbok)
+        {
+            for (int i = 0; i < ordbok.Count; i++)
+                Console.WriteLine(" {0} - {1}", ordbok[i].latin, ordbok[i].svenska);
+        }
+
+        private static void RemoveWord(List<Word> ordbok)
+        {
+            for (int i = 0; i < ordbok.Count; i++)
+                Console.WriteLine(i + ": " + ordbok[i].latin + " - " + ordbok[i].svenska);
+            int index;
+            while (!int.TryParse(Input("Vilket index vill du ta bort (-1 för att avbryta): "), out index)) ;
+            if (index >= 0 && index < ordbok.Count) ordbok.RemoveAt(index);
+            else Console.WriteLine("Felaktigt index.");
+        }
+
+        private static void NewWord(List<Word> ordbok)
+        {
+            Console.WriteLine("Ange en ny glosa");
+            string svensk_betydelse = Input("svenska: ");
+            string latinsk_betydelse = Input("latin: ");
+            int i;
+            ordbok.Add(new Word(svensk_betydelse, latinsk_betydelse));
+        }
+
+        private static void Latin(List<Word> ordbok, string latinskGlosa)
+        {
+            for (int i = 0; i < ordbok.Count; i++)
+            {
+                if (ordbok[i].latin == latinskGlosa)
+                {
+                    Console.WriteLine($"Svensk översättning: {ordbok[i].svenska}");
+                }
+            }
+        }
+        private static void Svenska(List<Word> ordbok, string svenskGlosa)
+        {
+            for (int i = 0; i < ordbok.Count; i++)
+            {
+                if (ordbok[i].svenska == svenskGlosa)
+                {
+                    Console.WriteLine($"Latinsk översättning: {ordbok[i].latin}");
+                }
+            }
+        }
+
+        private static void ShowHelp()
+        {
+            Console.WriteLine("hjälp        visa en lista på alla kommandon och en förklaring");
+            Console.WriteLine("latin        slå upp ett svenskt ord och få den latinska översättningen");
+            Console.WriteLine("ny           programmet frågar efter latin sedan svenska, uppslaget läggs in i ordlistan");
+            Console.WriteLine("sluta        programmet avslutas");
+            Console.WriteLine("svenska      slå upp ett latinskt ord och få den svenska översättningen");
+            Console.WriteLine("ta bort      vi tar bort ett uppslag ur ordlistan");
+            Console.WriteLine("visa         alla uppslag i ordlistan visas");
+        }
+
+        private static string Input(string prompt)
+        {
+            Console.Write(prompt);
+            return Console.ReadLine();
         }
     }
 }
