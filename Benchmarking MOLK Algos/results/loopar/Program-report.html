@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Program-20230317-130322</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2604/22H2/2022Update)
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET SDK=7.0.102
+  [Host]     : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2 DEBUG
+  DefaultJob : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>               Method</th><th>    Mean</th><th>  Error</th><th>  StdDev</th><th>  Median</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Bool_array_for_loop</td><td>33,454.030 ns</td><td>665.4212 ns</td><td>1,832.7634 ns</td><td>32,793.500 ns</td><td>-</td>
+</tr><tr><td>Bool_array_for_loop_novar</td><td>31,909.607 ns</td><td>507.9431 ns</td><td>424.1555 ns</td><td>32,127.820 ns</td><td>-</td>
+</tr><tr><td>Bool_array_foreach_loop</td><td>35,158.557 ns</td><td>1,692.6355 ns</td><td>4,990.7739 ns</td><td>32,400.488 ns</td><td>-</td>
+</tr><tr><td>Bool_array_ForEach_method</td><td>224,365.551 ns</td><td>2,523.7815 ns</td><td>2,107.4718 ns</td><td>225,170.520 ns</td><td>-</td>
+</tr><tr><td>Bool_list_for_loop</td><td>32,061.220 ns</td><td>520.1242 ns</td><td>434.3272 ns</td><td>32,214.752 ns</td><td>-</td>
+</tr><tr><td>Bool_list_for_loop_novar</td><td>31,927.662 ns</td><td>610.8195 ns</td><td>678.9243 ns</td><td>31,598.123 ns</td><td>-</td>
+</tr><tr><td>Bool_list_foreach_loop</td><td>155,916.033 ns</td><td>3,057.4397 ns</td><td>2,859.9310 ns</td><td>154,483.557 ns</td><td>-</td>
+</tr><tr><td>Bool_list_ForEach_method</td><td>222,952.921 ns</td><td>3,246.8031 ns</td><td>2,878.2064 ns</td><td>223,290.417 ns</td><td>-</td>
+</tr><tr><td>Int_array_for_loop</td><td>31,933.091 ns</td><td>409.3070 ns</td><td>1,026.8713 ns</td><td>31,594.849 ns</td><td>-</td>
+</tr><tr><td>Int_array_for_loop_novar</td><td>31,843.448 ns</td><td>628.3149 ns</td><td>860.0446 ns</td><td>31,482.251 ns</td><td>-</td>
+</tr><tr><td>Int_array_foreach_loop</td><td>36,343.861 ns</td><td>1,922.5814 ns</td><td>5,668.7746 ns</td><td>32,578.275 ns</td><td>-</td>
+</tr><tr><td>Int_array_ForEach_method</td><td>193,376.750 ns</td><td>3,715.9227 ns</td><td>4,130.2382 ns</td><td>194,005.664 ns</td><td>-</td>
+</tr><tr><td>Int_list_for_loop</td><td>32,158.996 ns</td><td>485.2169 ns</td><td>823.9352 ns</td><td>32,127.032 ns</td><td>-</td>
+</tr><tr><td>Int_list_for_loop_novar</td><td>31,972.721 ns</td><td>630.9666 ns</td><td>675.1271 ns</td><td>32,057.886 ns</td><td>-</td>
+</tr><tr><td>Int_list_foreach_loop</td><td>114,300.926 ns</td><td>1,561.8278 ns</td><td>1,384.5197 ns</td><td>113,715.900 ns</td><td>-</td>
+</tr><tr><td>Int_list_ForEach_method</td><td>223,632.481 ns</td><td>2,858.3238 ns</td><td>2,386.8298 ns</td><td>222,402.063 ns</td><td>-</td>
+</tr><tr><td>String_array_for_loop</td><td>31,967.353 ns</td><td>620.8862 ns</td><td>762.5040 ns</td><td>31,894.061 ns</td><td>-</td>
+</tr><tr><td>String_array_for_loop_novar</td><td>34,943.674 ns</td><td>1,718.7153 ns</td><td>5,040.6946 ns</td><td>32,353.598 ns</td><td>-</td>
+</tr><tr><td>String_array_foreach_loop</td><td>31,849.494 ns</td><td>627.8734 ns</td><td>616.6556 ns</td><td>31,571.600 ns</td><td>-</td>
+</tr><tr><td>String_array_ForEach_method</td><td>225,283.739 ns</td><td>2,264.3398 ns</td><td>2,223.8845 ns</td><td>224,358.911 ns</td><td>-</td>
+</tr><tr><td>String_list_for_loop</td><td>31,816.219 ns</td><td>612.8944 ns</td><td>629.3974 ns</td><td>31,500.226 ns</td><td>-</td>
+</tr><tr><td>String_list_for_loop_novar</td><td>31,674.006 ns</td><td>469.4698 ns</td><td>439.1423 ns</td><td>31,405.908 ns</td><td>-</td>
+</tr><tr><td>String_list_foreach_loop</td><td>155,373.317 ns</td><td>2,192.2539 ns</td><td>1,943.3760 ns</td><td>154,579.333 ns</td><td>-</td>
+</tr><tr><td>String_list_ForEach_method</td><td>266,610.569 ns</td><td>5,205.5409 ns</td><td>12,963.6032 ns</td><td>262,751.538 ns</td><td>-</td>
+</tr><tr><td>Object_array_for_loop</td><td>32,201.766 ns</td><td>642.2304 ns</td><td>961.2603 ns</td><td>32,207.382 ns</td><td>-</td>
+</tr><tr><td>Object_array_for_loop_novar</td><td>32,157.553 ns</td><td>466.6114 ns</td><td>413.6389 ns</td><td>32,190.854 ns</td><td>-</td>
+</tr><tr><td>Object_array_foreach_loop</td><td>32,194.856 ns</td><td>638.9860 ns</td><td>1,347.8384 ns</td><td>31,983.646 ns</td><td>-</td>
+</tr><tr><td>Object_array_ForEach_method</td><td>225,135.949 ns</td><td>3,851.7124 ns</td><td>3,216.3543 ns</td><td>225,007.324 ns</td><td>-</td>
+</tr><tr><td>Object_list_for_loop</td><td>31,811.244 ns</td><td>622.5513 ns</td><td>764.5489 ns</td><td>31,493.530 ns</td><td>-</td>
+</tr><tr><td>Object_list_for_loop_novar</td><td>31,647.510 ns</td><td>460.3966 ns</td><td>511.7296 ns</td><td>31,429.620 ns</td><td>-</td>
+</tr><tr><td>Object_list_foreach_loop</td><td>153,815.273 ns</td><td>3,067.4140 ns</td><td>2,719.1826 ns</td><td>155,007.117 ns</td><td>-</td>
+</tr><tr><td>Object_list_ForEach_method</td><td>224,677.912 ns</td><td>3,166.6512 ns</td><td>2,644.2971 ns</td><td>223,132.483 ns</td><td>-</td>
+</tr><tr><td>Wordstring_for_loop</td><td>3.325 ns</td><td>0.0974 ns</td><td>0.0957 ns</td><td>3.276 ns</td><td>-</td>
+</tr><tr><td>Wordstring_for_loop_novar</td><td>3.366 ns</td><td>0.1004 ns</td><td>0.0986 ns</td><td>3.315 ns</td><td>-</td>
+</tr><tr><td>Wordstring_foreach_loop</td><td>3.375 ns</td><td>0.1022 ns</td><td>0.1049 ns</td><td>3.313 ns</td><td>-</td>
+</tr><tr><td>Shortstring_for_loop</td><td>49.184 ns</td><td>0.8388 ns</td><td>1.5337 ns</td><td>48.670 ns</td><td>-</td>
+</tr><tr><td>Shortstring_for_loop_novar</td><td>48.829 ns</td><td>0.9962 ns</td><td>1.0230 ns</td><td>49.204 ns</td><td>-</td>
+
+</tr><tr><td>Longstring_for_loop</td><td>92,190.367 ns</td><td>1,830.6021 ns</td><td>2,443.8013 ns</td><td>90,939.130 ns</td><td>-</td>
+</tr><tr><td>Longstring_for_loop_novar</td><td>91,858.463 ns</td><td>1,828.2228 ns</td><td>1,956.1779 ns</td><td>90,650.037 ns</td><td>-</td>
+</tr><tr><td>Longstring_foreach_loop</td><td>92,428.178 ns</td><td>1,521.0076 ns</td><td>1,422.7515 ns</td><td>92,998.749 ns</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>

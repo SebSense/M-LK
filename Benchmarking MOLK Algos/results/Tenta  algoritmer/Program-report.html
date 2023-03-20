@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Program-20230317-104356</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2604/22H2/2022Update)
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET SDK=7.0.102
+  [Host]     : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2 DEBUG
+  DefaultJob : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>                                        Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>BM_SumEvens_Iterative</td><td>7.002 ms</td><td>0.1612 ms</td><td>0.4493 ms</td><td>6.794 ms</td><td>5 B</td>
+</tr><tr><td>BM_SumEvens_Iterative_no_len_variable</td><td>6.738 ms</td><td>0.0921 ms</td><td>0.0816 ms</td><td>6.701 ms</td><td>5 B</td>
+</tr><tr><td>BM_SumEvens_Recursive</td><td>5.795 ms</td><td>0.0588 ms</td><td>0.0491 ms</td><td>5.775 ms</td><td>5 B</td>
+</tr><tr><td>BM_SumEvens_Recursive_no_len_variable</td><td>6.424 ms</td><td>0.3132 ms</td><td>0.9234 ms</td><td>5.927 ms</td><td>5 B</td>
+</tr><tr><td>BM_SumEvens_Recursive_no_accumulator_no_len_variable</td><td>12.918 ms</td><td>0.2407 ms</td><td>0.2471 ms</td><td>12.893 ms</td><td>10 B</td>
+</tr><tr><td>BM_SumInverses_Iterative</td><td>10.332 ms</td><td>0.1249 ms</td><td>0.2017 ms</td><td>10.295 ms</td><td>10 B</td>
+</tr><tr><td>BM_SumInverses_Iterative_no_len_variable</td><td>10.217 ms</td><td>0.0689 ms</td><td>0.0575 ms</td><td>10.200 ms</td><td>10 B</td>
+</tr><tr><td>BM_SumInverses_Recursive</td><td>10.308 ms</td><td>0.1461 ms</td><td>0.1296 ms</td><td>10.315 ms</td><td>10 B</td>
+</tr><tr><td>BM_SumInverses_Recursive_no_len_variable</td><td>10.284 ms</td><td>0.1544 ms</td><td>0.1289 ms</td><td>10.208 ms</td><td>10 B</td>
+</tr></tbody></table>
+</body>
+</html>
