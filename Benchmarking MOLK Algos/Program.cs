@@ -9,6 +9,7 @@ using Perfolizer.Mathematics.SignificanceTesting;
 [MemoryDiagnoser]
 public class Program
 {
+    ///Förbereder BenchmarkDotNet:
     private class AllowNonOptimized : ManualConfig
     {
         public AllowNonOptimized()
@@ -26,6 +27,7 @@ public class Program
             throw new NotImplementedException();
         }
     }
+    ///classen Dataobjekt och Subthing utgör "dummy"-objekt för att fylla ett array och lista för testning.
     class Subthing
     {
         public string Name { get; set; } = "Namehere";
@@ -45,7 +47,7 @@ public class Program
         public string Type3 { get; set; }
         public Subthing[] Subthings = { new Subthing(), new Subthing(), new Subthing(), new Subthing() };
     }
-
+    //Initiera variabler som skall testas. Ett array och en lista för varje datatyp.
     const int n = 100000;
     int[] int_array = new int[n];
     List<int> int_list = new();
@@ -53,11 +55,14 @@ public class Program
     List<bool> bool_list = new();
     string[] string_array = new string[n];
     List<string> string_list = new();
+    //Olika långa strängar för att testa iterering genom bokstäverna
     string wordstring = "LoremIpsum",
         shortstring = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         longstring = "";
     Dataobject[] object_array = new Dataobject[n];
     List<Dataobject> object_list = new();
+    //GlobalSetup körs för att förbereda inför tester. For-loopen körs 100 000 ggr och befolkar alla arrayer och listor med 100 000 element.
+    //För int array och list fylls varje element med slumptal mellan 1 och 10000. Algoritmer som static metoder kan då testas genom MetodAttTesta(int_array[i], int_array[i+1]) t ex.
     [GlobalSetup]
     public void GlobalSetup()
     {
@@ -76,6 +81,7 @@ public class Program
             object_list.Add(new Dataobject());
         }
     }
+    ///Test av loopars hastighet:
     [Benchmark]
     public void Bool_array_for_loop()
     {
@@ -283,7 +289,9 @@ public class Program
     }
 
 
-
+    ///Test av olika metoder för uppgifterna från tentan. Definieras som static-metoder efter main.
+    
+    
     //[Benchmark]
     //public void BM_SumEvens_Iterative()
     //{
@@ -294,7 +302,7 @@ public class Program
     //        SumEvens_Iterative(int_array[i], int_array[i + 1]);
     //    }
     //}    
-    [Benchmark]
+    //[Benchmark]
     //public void BM_SumEvens_Iterative_optimized()
     //{
     //    int len = int_array.Length;
